@@ -6,37 +6,51 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-// import { ErrorRadios } from "./ErrorRadios";
-
 import { preguntasTrivia } from "../utils/preguntas";
 import ErrorRadios from "./ErrorRadios";
 
-export const Pregunta = () => {
-  const [preguntaActual, setPreguntaActual] = useState(0);
-
+export const Pregunta = ({
+  preguntaActual,
+  setPreguntaActual,
+  puntaje,
+  setPuntaje,
+}) => {
+  const [botonSiguiente, setBotonSiguiente] = useState(true);
   const siguientePregunta = preguntaActual + 1;
 
   const question = () => {
     setPreguntaActual((prev) => prev + 1);
+    setBotonSiguiente(true);
   };
-
-  console.log(preguntasTrivia[preguntaActual]);
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{ textAlign: "center" }}
+        >
           Pregunta {siguientePregunta}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {preguntasTrivia[preguntaActual].pregunta}
         </Typography>
-        <ErrorRadios preguntaActual={preguntaActual} />
+        <ErrorRadios
+          preguntaActual={preguntaActual}
+          setPuntaje={setPuntaje}
+          botonSiguiente={botonSiguiente}
+          setBotonSiguiente={setBotonSiguiente}
+        />
+        <p style={{ textAlign: "center" }}>Tu puntaje es: {puntaje}</p>
       </CardContent>
       <CardActions>
-        <Button size="small" onClick={question}>
-          Siguiente pregunta
-        </Button>
+        {!botonSiguiente && (
+          <Button size="small" onClick={question} sx={{ margin: "auto" }}>
+            Siguiente pregunta
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

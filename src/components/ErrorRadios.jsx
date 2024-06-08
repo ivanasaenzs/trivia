@@ -9,10 +9,15 @@ import Button from "@mui/material/Button";
 
 import { preguntasTrivia } from "../utils/preguntas";
 
-export default function ErrorRadios({ preguntaActual }) {
+export default function ErrorRadios({
+  preguntaActual,
+  setPuntaje,
+  botonSiguiente,
+  setBotonSiguiente,
+}) {
   const [value, setValue] = React.useState("");
   const [error, setError] = React.useState(false);
-  const [helperText, setHelperText] = React.useState("Choose wisely");
+  const [helperText, setHelperText] = React.useState("Seleccioná sabiamente");
 
   const handleRadioChange = (event) => {
     setValue(event.target.value);
@@ -24,12 +29,14 @@ export default function ErrorRadios({ preguntaActual }) {
     event.preventDefault();
 
     if (value === preguntasTrivia[preguntaActual].respuestaCorrecta) {
-      setHelperText("You got it!");
+      setHelperText("Sos una crack!");
       setError(false);
+      setPuntaje((prev) => prev + 10);
     } else {
-      setHelperText("Please select an option.");
+      setHelperText("Respuesta incorrecta");
       setError(true);
     }
+    setBotonSiguiente(false);
   };
 
   return (
@@ -52,9 +59,15 @@ export default function ErrorRadios({ preguntaActual }) {
           ))}
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
-          Check Answer
-        </Button>
+        {botonSiguiente && (
+          <Button
+            sx={{ mt: 1, mr: 1, color: "purple" }}
+            type="submit"
+            variant="outlined"
+          >
+            Chequear respuesta
+          </Button>
+        )}
       </FormControl>
     </form>
   );
