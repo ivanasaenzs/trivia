@@ -8,6 +8,7 @@ import { Container } from "@mui/material";
 export const Home = ({
   preguntaActual,
   setPreguntaActual,
+  setMostrarPregunta,
   puntaje,
   setPuntaje,
 }) => {
@@ -28,7 +29,12 @@ export const Home = ({
           puntaje={puntaje}
         />
       ) : (
-        <GameOver puntaje={puntaje} />
+        <GameOver
+          puntaje={puntaje}
+          setMostrarPregunta={setMostrarPregunta}
+          setPreguntaActual={setPreguntaActual}
+          setPuntaje={setPuntaje}
+        />
       )}
     </Container>
   );

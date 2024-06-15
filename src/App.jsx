@@ -1,3 +1,5 @@
+import "./utils/index.css";
+
 import { Button, Container, CssBaseline } from "@mui/material";
 
 import { Home } from "./components/Home";
@@ -18,13 +20,14 @@ function App() {
           alignItems: "center",
           minHeight: "100vh",
           minWidth: "100vw",
-          backgroundColor: "purple",
+          backgroundColor: "#95D2B3",
         }}
       >
         {mostrarPregunta ? (
           <Home
             preguntaActual={preguntaActual}
             setPreguntaActual={setPreguntaActual}
+            setMostrarPregunta={setMostrarPregunta}
             setPuntaje={setPuntaje}
             puntaje={puntaje}
           />
@@ -42,7 +45,11 @@ function App() {
             <Button
               variant="contained"
               onClick={() => setMostrarPregunta(true)}
-              sx={{ fontSize: "18px", backgroundColor: "#E49BFF" }}
+              sx={{
+                fontSize: "18px",
+                backgroundColor: "#D76EF5",
+                "&:hover": { backgroundColor: "#55AD9B" },
+              }}
             >
               Iniciar
             </Button>

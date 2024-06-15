@@ -30,7 +30,7 @@ export const Pregunta = ({
           gutterBottom
           variant="h5"
           component="div"
-          sx={{ textAlign: "center" }}
+          sx={{ color: "#C738BD", textAlign: "center" }}
         >
           Pregunta {siguientePregunta}
         </Typography>
@@ -47,7 +47,11 @@ export const Pregunta = ({
       </CardContent>
       <CardActions>
         {!botonSiguiente && (
-          <Button size="small" onClick={question} sx={{ margin: "auto" }}>
+          <Button
+            size="small"
+            onClick={question}
+            sx={{ color: "#D76EF5", margin: "auto" }}
+          >
             Siguiente pregunta
           </Button>
         )}
